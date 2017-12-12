@@ -6,9 +6,11 @@ class HelpController extends TelegramBaseController {
      * @param {Scope} $
      */
     handle($) {
-        $.sendMessage('A. Vuoi trovare una farmacia intorno a te? Inviami la tua posizione.\n')
-        $.sendMessage('B: Vuoi l\'elenco delle farmacie della tua città? Scrivimi il nome del tuo comune.\n')
-        $.sendMessage('NB: se invii il nome di un comune che non esiste, non posso aiutarti in nessun modo. \n')
+        var message = '';
+        message = message.concat('A. Vuoi trovare una farmacia intorno a te? \nInviami la tua posizione.\n\n')
+        message = message.concat('B: Vuoi l\'elenco delle farmacie della tua città? \nScrivimi il nome del tuo comune.\n\n')
+        message = message.concat('NB: se invii il nome di un comune che non esiste, non posso aiutarti in nessun modo. \n\n')
+        $.sendMessage(message)
     }
 }
 
