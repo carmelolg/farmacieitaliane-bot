@@ -1,7 +1,8 @@
-var Telegram = require('telegram-node-bot')
-var TelegramBaseController = Telegram.TelegramBaseController
-var FinderService = require('./cloud')
-var GeocoderService = require('./geocoder')
+var Telegram = require('telegram-node-bot');
+var TelegramBaseController = Telegram.TelegramBaseController;
+var FinderService = require('./cloud');
+var GeocoderService = require('./geocoder');
+var Constant = require('./../constants');
 
 class FinderController extends TelegramBaseController {
 
@@ -9,15 +10,22 @@ class FinderController extends TelegramBaseController {
      * @param {Scope} scope
      */
     handle(scope) {
-        scope.sendMessage('Elaboro la tua richiesta...\n')
+        scope.sendMessage('Elaboro la tua richiesta...\n');
 
         if (scope.message.text) {
-
+            FinderService.getNearestPharmaciesByCap(scope.message.text, sendMessage);
+        } else if (scope.message.location && scope.message.location.latitude && scope.message.location.longitude) {
+            GeocoderService.getCapByLocation(scope.message.location.latitude, scope.message.location.longitude, function(err, cap) {
+                FinderService.getNearestPharmaciesByCapAndCurrentPosition(cap, scope.message.location.latitude, scope.message.location.longitude, sendMessage);
+            });
+        } else {
+            scope.sendMessage(Constant.ERROR_MESSAGE_DEFAULT);
         }
 
-        GeocoderService.getCapByLocation(scope.message.location.latitude, scope.message.location.longitude, function(err, cap) {
-
-            FinderService.getNearestPharmaciesByCapAndCurrentPosition(cap, scope.message.location.latitude, scope.message.location.longitude, function(err, list) {
+        function sendMessage(err, list) {
+            if (err) {
+                scope.sendMessage(err);
+            } else {
                 var message = '';
                 var index = 1;
                 list.forEach(function(pharmacy) {
@@ -29,9 +37,10 @@ class FinderController extends TelegramBaseController {
                     index++;
                 });
                 scope.sendMessage(message);
-            });
-        })
+            }
+        }
     }
+
 }
 // module.export{
 module.exports.FinderController = FinderController;
