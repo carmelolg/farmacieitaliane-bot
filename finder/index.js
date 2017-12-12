@@ -1,13 +1,14 @@
 const Telegram = require('telegram-node-bot')
 const TelegramBaseController = Telegram.TelegramBaseController
 
-class PharmacyController extends TelegramBaseController {
+class FinderController extends TelegramBaseController {
 
     /**
      * @param {Scope} scope
      */
     handle(scope) {
-        scope.sendMessage('Work in progress')
+        scope.sendMessage('Non fare il furbo, il comando non esiste!')
+
 
 
         // var request = require('request');
@@ -21,4 +22,5 @@ class PharmacyController extends TelegramBaseController {
 }
 
 
-module.exports.PharmacyController = PharmacyController;
+// module.export{
+module.exports.FinderController  = FinderController ;

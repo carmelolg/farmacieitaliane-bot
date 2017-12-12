@@ -6,7 +6,8 @@ class StartController extends TelegramBaseController {
      * @param {Scope} $
      */
     handle($) {
-        $.sendMessage('Benvenuto nel bot di Vita da fuori campus!')
+        $.sendMessage('Ciao, ti aiuterò a trovare la farmacia più vicina a te.\n')
+        $.sendMessage('Per maggiori informazioni sui comandi a tua disposizione mandami un /help.\n')
     }
 }
 

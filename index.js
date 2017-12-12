@@ -7,13 +7,11 @@ const telegram = new Telegram.Telegram(Parameters.token, {
     workers: 1
 })
 
-const PharmacyController = require("./pharmacy").PharmacyController;
 const StartController = require("./start").StartController;
-const OtherwiseController = require("./otherwise").OtherwiseController;
+const FinderController = require("./finder").FinderController;
 
 
 telegram.router
     .when(new TextCommand('/start'), new StartController())
-    .when(new TextCommand('/somethings'), new PharmacyController())
-    .otherwise(new OtherwiseController())
+    .otherwise(new FinderController())
 
