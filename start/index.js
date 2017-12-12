@@ -12,5 +12,5 @@ class StartController extends TelegramBaseController {
 }
 
 
-// module.export{
+// module.export{a
 module.exports.StartController = StartController;
