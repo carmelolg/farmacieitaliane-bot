@@ -1,0 +1,19 @@
+{
+  "name": "vitadafuoricampus-bot",
+  "description": "Il bot di \"Vita da fuori campus\"",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/carmelolg/vitadafuoricampus-bot.git"
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "request": "^2.83.0",
+    "telegram-node-bot": "^4.0.5",
+    "wpapi": "^1.1.2"
+  },
+  "license": {
+    "type": "GNU 3.0",
+    "url": "https://opensource.org/licenses/GPL-3.0"
+  }
+}
