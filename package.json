@@ -1,10 +1,10 @@
 {
-  "name": "vitadafuoricampus-bot",
-  "description": "Il bot di \"Vita da fuori campus\"",
+  "name": "farmacieitaliane-bot",
+  "description": "Il bot che trova le farmacie intorno a te!",
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/carmelolg/vitadafuoricampus-bot.git"
+    "url": "https://github.com/carmelolg/farmacieitaliane-bot.git"
   },
   "dependencies": {
     "@google/maps": "^0.4.5",
