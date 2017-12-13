@@ -29,6 +29,7 @@ var getNearestPharmaciesByCapAndCurrentPosition = function(cap, currentLat, curr
     _requestOpenData(cap, function(error, list) {
 
         if (error) {
+            console.error(error);
             cb(Constant.ERROR_MESSAGE_DEFAULT);
         } else {
             list.forEach(function(pharmacy) {
@@ -45,6 +46,7 @@ var getNearestPharmaciesByCapAndCurrentPosition = function(cap, currentLat, curr
 var getNearestPharmaciesByCap = function(cap, cb) {
     _requestOpenData(cap, function(error, list) {
         if (error) {
+            console.error(error);
             cb(Constant.ERROR_MESSAGE_DEFAULT);
         } else {
             cb(null, list.filter(function(p) {
@@ -59,6 +61,7 @@ function _requestOpenData(cap, cb) {
     request("http://opendatasalutedata.cloudapp.net/v1/datacatalog/Farmacie/?$filter=cap   eq '" + cap + "' &format=json",
         function(error, response, body) {
             if (error) {
+                console.error(error);
                 cb(error);
             } else {
                 var resultObject = JSON.parse(body);

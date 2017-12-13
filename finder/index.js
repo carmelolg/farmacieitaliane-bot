@@ -9,15 +9,20 @@ class FinderController extends TelegramBaseController {
      * @param {Scope} scope
      */
     handle(scope) {
-        scope.sendMessage('Sto cercando le farmacie disponibili, attendi un attimo..\n');
 
+        if(scope.message.text && (!Number(scope.message.text) || scope.message.text.length != 5)){
+            scope.sendMessage(Constant.USER_NOTPOLITE);
+            return;
+        }
+
+        scope.sendMessage('Sto cercando le farmacie disponibili, attendi un attimo..\n');
         FinderService.getPharmaciesListByParam(scope.message, function (err, list) {
             if (err) {
                 scope.sendMessage(err);
             } else {
 
                 if (!list.length) {
-                    scope.sendMessage(Constant.ERROR_MESSAGE_DEFAULT);
+                    scope.sendMessage(Constant.RESUL_EMPTY);
                     return;
                 }
 
@@ -34,5 +39,5 @@ class FinderController extends TelegramBaseController {
     }
 
 }
-// module.export{
+
 module.exports.FinderController = FinderController;
