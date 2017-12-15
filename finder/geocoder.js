@@ -1,4 +1,5 @@
 var Parameters = require('./../credentials.js');
+var Constants = require('./../constants');
 
 var googleMapsClient = require('@google/maps').createClient({
     key: Parameters.googleApiKey
@@ -25,6 +26,8 @@ var getCapByLocation = function(latitude, longitude, cb) {
 
                 cb(null, cap.short_name);
             }
+        }else{
+            cb(Constants.ERROR_MESSAGE_DEFAULT);
         }
     });
 
