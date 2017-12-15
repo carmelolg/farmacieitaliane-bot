@@ -33,7 +33,9 @@ var getNearestPharmaciesByCapAndCurrentPosition = function(cap, currentLat, curr
             cb(Constant.ERROR_MESSAGE_DEFAULT);
         } else {
             list.forEach(function(pharmacy) {
-                if (pharmacy.datafinevalidita === '-' && Utils.distanceBetweenTwoGeoPoint(pharmacy.latitudine, pharmacy.longitudine, currentLat, currentLon) < 0.7) {
+                var distance = Utils.distanceBetweenTwoGeoPoint(pharmacy.latitudine, pharmacy.longitudine, currentLat, currentLon);
+                if (pharmacy.datafinevalidita === '-' && distance < 0.7) {
+                    pharmacy.distanceFromHim = distance;
                     array.push(pharmacy);
                 }
             });

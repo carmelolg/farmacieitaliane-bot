@@ -31,6 +31,10 @@ class FinderController extends TelegramBaseController {
                     message = message.concat('Risultato ' + ++index + '\n');
                     message = message.concat('Farmacia: ' + pharmacy.descrizionefarmacia + '\n');
                     message = message.concat('Indirizzo: ' + pharmacy.indirizzo + ' ' + pharmacy.cap + ' ' + pharmacy.descrizionecomune + ' [(Google Maps)](https://www.google.com/maps/?q=' + pharmacy.latitudine.replace(",", ".") + ',' + pharmacy.longitudine.replace(",", ".") + ')\n');
+                    if(pharmacy.distanceFromHim){
+                        var valueDistance = Math.round(pharmacy.distanceFromHim*1000);
+                        message = message.concat('Distanza da te: ' + valueDistance + ' metri in linea d\'aria.\n');
+                    }
                     message = message.concat('Tipo di farmacia: ' + pharmacy.descrizionetipologia);
                     scope.sendMessage(message, {'parse_mode': 'Markdown'});
                 });
